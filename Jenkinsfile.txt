@@ -7,31 +7,16 @@ node {
         checkout scm
     }
     
-  
-  
-   /* stage('SonarQube analys'is) {
-    def scannerHome = tool 'SonarScanner 4.2.0.1873';
-    withSonarQubeEnv('My SonarQube Server') { // If you have configured more than one global server connection, you can specify its name
-      sh "${scannerHome}/bin/sonar-scanner"
-    }
-  }*/
-  /*stage('SonarQube analys') {
-          // requires SonarQube Scanner 4.2.0.1873+
-          scannerHome = tool 'SonarQube Scanner 4.2.0.1873'
-        }
-        withSonarQubeEnv('SonarQube Scanner') {
-          sh "${scannerHome}/bin/sonar-scanner"
-        }*/
-        
-stage('Code scan') {
-     sh '/apps/sonar-scanner-3.3.0.1492-linux/bin/sonar-scanner'
-    }
+    stage('Mvn Package'){
+       sh 'mvn clean package'
+   }
+stage('Build Docker Image'){
+     sh 'docker build -t springboot/my-app:2.0.0 .'
+   }
 
     
-    
-
-     /*stage('NPM INSTALL'){
-        sh 'npm install'
-    }*/
+  
+  
+   
      
     }
