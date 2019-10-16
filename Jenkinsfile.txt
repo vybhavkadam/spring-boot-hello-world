@@ -1,9 +1,9 @@
 node {
     
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
+    
+stage('SCM Checkout'){
+git credentialsId: 'git-cred', url: 'https://github.com/vybhavkadam/spring-boot-hello-world.git'
 
-        checkout scm
     }
     
     stage('Mvn Package'){
